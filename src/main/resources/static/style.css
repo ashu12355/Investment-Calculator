@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Lexend:wght@100..900&family=Quicksand:wght@300..700&family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+:root {
+  --body: #222831;
+  --section: #393e46;
+  --input-color: #00adb5;
+  --submit-color: #eeeeee;
+
+  --shadow: 10px 20px 20px rgba(0, 0, 0, 0.3);
+  --space-one: 1rem;
+  --space-half: 0.5rem;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color-scheme: dark white;
+}
+body {
+  background-color: var(--body);
+  font-family: "Radio Canada Big", sans-serif;
+}
+header {
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+section {
+  background-color: var(--section);
+  width: 80%;
+  margin: var(--space-one) auto;
+  padding: var(--space-one);
+  box-shadow: var(--shadow);
+  border-radius: var(--space-one);
+}
+.input-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-half);
+}
+.input-items label {
+  display: block;
+}
+input[type="text"] {
+  width: 80%;
+  border: none;
+  outline: none;
+  background-color: var(--input-color);
+  box-shadow: var(--shadow);
+  padding: var(--space-half);
+  border-radius: var(--space-half);
+}
+input[type="text"]::placeholder {
+  color: var(--submit-color);
+}
+.interest-mode {
+  display: flex;
+  gap: var(--space-one);
+  margin-top: var(--space-half);
+}
+input[type="radio"] {
+  accent-color: var(--input-color);
+  scale: 1.5;
+}
+.submit-btn {
+  margin-top: var(--space-one);
+  text-align: center;
+}
+input[type="submit"] {
+  border: none;
+  outline: none;
+  background-color: var(--input-color);
+  box-shadow: var(--shadow);
+
+  padding: var(--space-half) calc(var(--space-one) * 2);
+  border-radius: var(--space-half);
+  cursor: pointer;
+}

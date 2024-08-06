@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -13,6 +14,48 @@
             Investment Calculator
         </h1>
     </header>
+    <section class="form-section">
+        <form method="post" action="/calculate">
+            <div class="input-items">
+                <div class="form-group">
+                    <label for="starting-year">Starting Year</label>
+                    <input type="text" id="starting-year" placeholder="Ex: 3000" name="startingYear" autofocus />
+                </div>
+                <div class="form-group">
+                    <label for="initial-investment">Initial Investment</label>
+                    <input type="text" id="initial-investment" name="initialInvestment" placeholder="Ex: 14000" />
+                </div>
+                <div class="form-group">
+                    <label for="yearly-investment">Yearly Investment</label>
+                    <input type="text" id="yearly-investment" name="yearlyInvestment" placeholder="Ex: 3000" />
+                </div>
+                <div class="form-group">
+                    <label for="investment-term">Investment Term (In Year)</label>
+                    <input type="text" id="investment-term" name="investmentTerm" placeholder="Ex: 3">
+                </div>
+                <div class="form-group">
+                    <label for="return-rate">Return Rate (In %)</label>
+                    <input type="text" id="return-rate" name="returnRate" placeholder="Ex: 12">
+                </div>
+                <div class="radio-button">
+                    <p>Interest Mode</p>
+                    <div class="interest-mode">
+
+                        <label for="simple-btn">SIMPLE</label>
+                        <input type="radio" value="SIMPLE" name="interestMode" checked id="simple-btn">
+
+                        <label for="compound-btn">COMPOUND</label>
+                        <input type="radio" value="COMPOUND" name="interestMode" id="compound-btn">
+                    </div>
+
+                </div>
+            </div>
+            <div class="submit-btn">
+               <input type="submit">
+            </div>
+        </form>
+    </section>
+    <!-- <section class="table-section"></section> -->
 </body>
 
 </html>
