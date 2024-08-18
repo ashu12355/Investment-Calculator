@@ -51,6 +51,18 @@ input[type="text"] {
 input[type="text"]::placeholder {
   color: var(--submit-color);
 }
+input[type="number"] {
+  width: 80%;
+  border: none;
+  outline: none;
+  background-color: var(--input-color);
+  box-shadow: var(--shadow);
+  padding: var(--space-half);
+  border-radius: var(--space-half);
+}
+input[type="number"]::placeholder {
+  color: var(--submit-color);
+}
 .interest-mode {
   display: flex;
   gap: var(--space-one);
