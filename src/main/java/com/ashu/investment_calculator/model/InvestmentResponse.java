@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class InvestmentResponse {
     private InterestMode interestMode;
-    private int totalReturn;
-    private int totalInvestment;
+    private double totalReturn;
+    private double totalInvestment;
     private List<InvestmentDetails> details;
 }

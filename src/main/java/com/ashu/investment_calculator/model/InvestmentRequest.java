@@ -9,10 +9,10 @@ import lombok.ToString;
 @ToString
 public class InvestmentRequest {
     private int startingYear;
-    private int initialInvestment;
-    private int yearlyInvestment;
-    private int investmentTerm;
-    private int returnRate;
+    private double initialInvestment;
+    private double yearlyInvestment;
+    private double investmentTerm;
+    private double returnRate;
     private InterestMode interestMode;
 
 }

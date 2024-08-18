@@ -17,14 +17,23 @@ public class InvestmentService {
        var details = interestMode == InterestMode.SIMPLE 
        ? simpleCalculation(request) 
        : compoundCalculation(request);
-        return null;
+
+    var response = new InvestmentResponse();
+    response.setInterestMode(interestMode);
+    response.setDetails(details);
+
+    var latestDetails = details.get(details.size() - 1);
+    response.setTotalInvestment(latestDetails.getTotalInvestment());
+    response.setTotalReturn(latestDetails.getEndingBalance());
+
+        return response;
     }
 
     private List<InvestmentDetails> simpleCalculation(InvestmentRequest request) {
         var startingYear = request.getStartingYear();
         var initialInvestment = request.getInitialInvestment();
         var yearlyInvestment = request.getYearlyInvestment();
-        var investmentTerm = request.getYearlyInvestment();
+        var investmentTerm = request.getInvestmentTerm();
         var returnRate = request.getReturnRate();
 
         //
@@ -40,10 +49,10 @@ public class InvestmentService {
             investmentDetails.setYearlyInvestment(yearlyInvestment);
 
             totalInvestment += yearlyInvestment;
-            investmentDetails.setTotalInvestment(totalInterest);
-
-            int interestEarn = totalInterest * returnRate / 100 ;
             investmentDetails.setTotalInvestment(totalInvestment);
+
+            double interestEarn = totalInvestment * returnRate / 100 ;
+            investmentDetails.setInterestEarn(interestEarn);
 
             totalInterest += interestEarn;
             investmentDetails.setTotalInterest(totalInterest);
@@ -61,7 +70,44 @@ public class InvestmentService {
      }
 
     private List<InvestmentDetails> compoundCalculation(InvestmentRequest request) {
-        return null;
+
+        var startingYear = request.getStartingYear();
+        var initialInvestment = request.getInitialInvestment();
+        var yearlyInvestment = request.getYearlyInvestment();
+        var investmentTerm = request.getInvestmentTerm();
+        var returnRate = request.getReturnRate();
+
+        //
+        var endingBalance = initialInvestment;
+        var totalInvestment = initialInvestment;
+        var totalInterest = 0;
+
+        var details = new ArrayList<InvestmentDetails>();
+        for(int i =1 ; i<= investmentTerm;i++){
+            var investmentDetails = new InvestmentDetails();
+            investmentDetails.setYear(startingYear);
+            investmentDetails.setInitialInvestment(initialInvestment);
+            investmentDetails.setYearlyInvestment(yearlyInvestment);
+
+            totalInvestment += yearlyInvestment;
+            investmentDetails.setTotalInvestment(totalInvestment);
+
+            double interestEarn = (endingBalance + yearlyInvestment) * returnRate / 100 ;
+            investmentDetails.setTotalInvestment(interestEarn);
+
+            totalInterest += interestEarn;
+            investmentDetails.setTotalInterest(totalInterest);
+
+            endingBalance += yearlyInvestment + interestEarn;
+            investmentDetails.setEndingBalance(endingBalance);
+
+            details.add(investmentDetails);
+            startingYear++;
+            initialInvestment = endingBalance;
+
+        }
+
+        return details;
     }
 
     

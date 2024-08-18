@@ -19,43 +19,101 @@
             <div class="input-items">
                 <div class="form-group">
                     <label for="starting-year">Starting Year</label>
-                    <input type="text" id="starting-year" placeholder="Ex: 3000" name="startingYear" autofocus />
+                    <input 
+                    type="text" 
+                    id="starting-year" 
+                    placeholder="Ex: 3000" 
+                    name="startingYear" 
+                    autofocus 
+                    required
+                    pattern="[0-9]+"
+                    title="Must Be a Number"
+                    />
                 </div>
                 <div class="form-group">
                     <label for="initial-investment">Initial Investment</label>
-                    <input type="text" id="initial-investment" name="initialInvestment" placeholder="Ex: 14000" />
+                    <input type="text" id="initial-investment" name="initialInvestment" placeholder="Ex: 14000" required
+                    pattern="[0-9]+"
+                    title="Must Be a Number" />
                 </div>
                 <div class="form-group">
                     <label for="yearly-investment">Yearly Investment</label>
-                    <input type="text" id="yearly-investment" name="yearlyInvestment" placeholder="Ex: 3000" />
+                    <input type="text" id="yearly-investment" name="yearlyInvestment" placeholder="Ex: 3000" required
+                    pattern="[0-9]+"
+                    title="Must Be a Number"/>
                 </div>
                 <div class="form-group">
                     <label for="investment-term">Investment Term (In Year)</label>
-                    <input type="text" id="investment-term" name="investmentTerm" placeholder="Ex: 3">
+                    <input type="text" id="investment-term" name="investmentTerm" placeholder="Ex: 3" required
+                    pattern="[0-9]+"
+                    title="Must Be a Number">
                 </div>
                 <div class="form-group">
                     <label for="return-rate">Return Rate (In %)</label>
-                    <input type="text" id="return-rate" name="returnRate" placeholder="Ex: 12">
+                    <input type="text" id="return-rate" name="returnRate" placeholder="Ex: 12" required
+                    pattern="[0-9]+"
+                    title="Must Be a Number">
                 </div>
                 <div class="radio-button">
                     <p>Interest Mode</p>
                     <div class="interest-mode">
 
                         <label for="simple-btn">SIMPLE</label>
-                        <input type="radio" value="SIMPLE" name="interestMode" checked id="simple-btn">
+                        <input type="radio" value="SIMPLE" name="interestMode" checked id="simple-btn" required>
 
                         <label for="compound-btn">COMPOUND</label>
-                        <input type="radio" value="COMPOUND" name="interestMode" id="compound-btn">
+                        <input type="radio" value="COMPOUND" name="interestMode" id="compound-btn" required>
                     </div>
 
                 </div>
             </div>
             <div class="submit-btn">
-               <input type="submit">
+               <input type="submit" required>
             </div>
         </form>
     </section>
-    <!-- <section class="table-section"></section> -->
+    <section class="table-section" data-th-if="${response !=null}">
+        <table>
+            <caption
+            data-th-text="|Year Wise Return(${response.interestMode}) Calculation|">
+            <thead>
+                <th>Year</th>
+                <th>Initial Investment</th>
+                <th>Yearly Investment</th>
+                <th>Total Investment</th>
+                <th>Interest Earn</th>
+                <th>Total Interest</th>
+                <th>Ending Balance</th>
+            </thead>
+            <tbody>
+                <tr data-th-each="detail : ${response.details}">
+                    <td data-th-text="${detail.year}"></td>
+                    <td data-th-text="|&#8377; ${detail.initialInvestment}|"></td>
+                    <td data-th-text="|&#8377; ${detail.yearlyInvestment}|"></td>
+                    <td data-th-text="|&#8377; ${detail.totalInvestment}|"></td>
+                    <td data-th-text="|&#8377; ${detail.interestEarn}|"></td>
+                    <td data-th-text="|&#8377; ${detail.totalInterest}|"></td>
+                    <td data-th-text="|&#8377; ${detail.endingBalance}|"></td>
+                    
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7"><hr></td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-right">Total Return :</td>
+                    <td data-th-text="|&#8377; ${response.totalReturn}|"></td>
+
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-right">Total Investment :</td>
+                    <td data-th-text="|&#8377; ${response.totalInvestment}|"></td>
+                </tr>
+            </tfoot>
+            </caption>
+        </table>
+    </section>
 </body>
 
 </html>
